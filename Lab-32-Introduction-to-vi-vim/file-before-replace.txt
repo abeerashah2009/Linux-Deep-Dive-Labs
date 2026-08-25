@@ -1,0 +1,5 @@
+Linux vi/vim Lab 32
+This is an example line for search practice.
+This line contains the word example.
+This is an old configuration value.
+Linux text editing is an essential administration skill.
