@@ -1,0 +1,4 @@
+Lab 31 - Secure File Transfer Demonstration
+Protocol: SCP
+Purpose: Demonstrate secure local-to-remote and remote-to-local file transfer.
+Environment: Ubuntu Linux
