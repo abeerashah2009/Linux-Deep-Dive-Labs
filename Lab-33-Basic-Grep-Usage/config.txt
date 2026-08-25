@@ -1,0 +1,7 @@
+server_name=linux-server
+port=8080
+timeout=30
+retry=3
+logging=enabled
+backup=enabled
+status=production
