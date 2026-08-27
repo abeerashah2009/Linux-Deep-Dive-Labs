@@ -1,0 +1,2 @@
+-rw-r--r-- 1 root root 146 Oct 22  2025 /etc/fstab
+-rw-r--r-- 1 root root 146 Aug 27 12:32 /etc/fstab.bak

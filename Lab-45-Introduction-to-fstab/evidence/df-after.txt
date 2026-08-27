@@ -1,0 +1,2 @@
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme1n1     30G   24K   28G   1% /media/usb
