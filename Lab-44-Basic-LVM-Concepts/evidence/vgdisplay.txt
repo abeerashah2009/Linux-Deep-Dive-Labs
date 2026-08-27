@@ -1,0 +1,21 @@
+  --- Volume group ---
+  VG Name               myvg
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  1
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                0
+  Open LV               0
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               <30.00 GiB
+  PE Size               4.00 MiB
+  Total PE              7679
+  Alloc PE / Size       0 / 0   
+  Free  PE / Size       7679 / <30.00 GiB
+  VG UUID               bessao-m6eT-gJxZ-990a-bAdO-2p0H-KkDrzr
+   

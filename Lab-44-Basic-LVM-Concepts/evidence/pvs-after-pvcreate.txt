@@ -1,0 +1,2 @@
+  PV           VG Fmt  Attr PSize  PFree 
+  /dev/nvme1n1    lvm2 ---  30.00g 30.00g

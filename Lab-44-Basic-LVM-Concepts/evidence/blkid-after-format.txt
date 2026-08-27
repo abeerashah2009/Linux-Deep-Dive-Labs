@@ -1,0 +1,1 @@
+/dev/myvg/mylv: UUID="9f16f803-dcff-48a5-b098-708b7e3c7632" BLOCK_SIZE="4096" TYPE="ext4"

@@ -1,0 +1,12 @@
+  "/dev/nvme1n1" is a new physical volume of "30.00 GiB"
+  --- NEW Physical volume ---
+  PV Name               /dev/nvme1n1
+  VG Name               
+  PV Size               30.00 GiB
+  Allocatable           NO
+  PE Size               0   
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               JKfF0G-d7pP-g72T-Pzy1-SnsU-qegR-J1gx8I
+   

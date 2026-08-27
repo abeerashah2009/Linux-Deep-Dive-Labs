@@ -1,0 +1,1 @@
+/dev/mapper/myvg-mylv on /mnt/mylv type ext4 (rw,relatime)

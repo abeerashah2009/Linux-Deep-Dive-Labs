@@ -1,0 +1,3 @@
+total 16
+drwx------ 2 root root 16384 Aug 27 11:27 lost+found
+-rw-r--r-- 1 root root     0 Aug 27 11:28 lvm-test-file.txt

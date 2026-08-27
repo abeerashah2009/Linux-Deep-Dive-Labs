@@ -1,0 +1,17 @@
+  --- Logical volume ---
+  LV Path                /dev/myvg/mylv
+  LV Name                mylv
+  VG Name                myvg
+  LV UUID                BdnB1s-Lqsw-WPjI-WsX2-18W8-5Bd2-3PzcfS
+  LV Write Access        read/write
+  LV Creation host, time ip-172-31-10-93, 2026-08-27 11:27:11 +0000
+  LV Status              available
+  # open                 0
+  LV Size                1.00 GiB
+  Current LE             256
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     256
+  Block device           252:0
+   

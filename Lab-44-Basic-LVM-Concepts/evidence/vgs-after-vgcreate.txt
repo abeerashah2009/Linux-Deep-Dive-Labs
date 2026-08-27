@@ -1,0 +1,2 @@
+  VG   #PV #LV #SN Attr   VSize   VFree  
+  myvg   1   0   0 wz--n- <30.00g <30.00g

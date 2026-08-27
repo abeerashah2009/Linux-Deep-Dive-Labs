@@ -1,0 +1,2 @@
+Filesystem             Size  Used Avail Use% Mounted on
+/dev/mapper/myvg-mylv  974M   24K  907M   1% /mnt/mylv
