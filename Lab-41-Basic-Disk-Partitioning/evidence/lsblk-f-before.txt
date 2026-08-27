@@ -1,0 +1,17 @@
+NAME         FSTYPE   FSVER LABEL           UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0        squashfs 4.0                                                              0   100% /snap/amazon-ssm-agent/11797
+loop1        squashfs 4.0                                                              0   100% /snap/core22/2133
+loop2        squashfs 4.0                                                              0   100% /snap/firefox/7423
+loop3        squashfs 4.0                                                              0   100% /snap/gnome-42-2204/226
+loop4        squashfs 4.0                                                              0   100% /snap/bare/5
+loop5        squashfs 4.0                                                              0   100% /snap/core22/2163
+loop6        squashfs 4.0                                                              0   100% /snap/snapd/25577
+loop7        squashfs 4.0                                                              0   100% /snap/thunderbird/877
+loop8        squashfs 4.0                                                              0   100% /snap/gtk-common-themes/1535
+loop9        squashfs 4.0                                                              0   100% /snap/snapd/25202
+nvme1n1                                                                                         
+nvme0n1                                                                                         
+├─nvme0n1p1  ext4     1.0   cloudimg-rootfs 12f6092b-46d6-4b4c-8ac7-d76c4d62dde1   20.4G    27% /
+├─nvme0n1p14                                                                                    
+├─nvme0n1p15 vfat     FAT32 UEFI            BDC4-D6EC                              98.2M     6% /boot/efi
+└─nvme0n1p16 ext4     1.0   BOOT            3ad5394a-0d50-4795-835e-1b2da7ac508d  579.4M    27% /boot

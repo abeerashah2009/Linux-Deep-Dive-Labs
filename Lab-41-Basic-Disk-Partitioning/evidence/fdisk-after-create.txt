@@ -1,0 +1,10 @@
+Disk /dev/nvme1n1: 30 GiB, 32212254720 bytes, 62914560 sectors
+Disk model: Amazon Elastic Block Store              
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 79BCEF0B-FEED-4E17-BEEB-C6F9D3EB6B3D
+
+Device         Start     End Sectors  Size Type
+/dev/nvme1n1p1  2048 1026047 1024000  500M Linux filesystem
