@@ -1,0 +1,17 @@
+Lab 38: Systemd Services Overview
+
+Systemd Version: 255
+System State: degraded
+Failed Units: 1
+Failed Service: cloudwatch-ami-reinit.service
+Failure Reason: start operation timed out
+Core Service: ssh.service
+SSH Status: active (running)
+
+Avahi Service Testing:
+- Started successfully
+- Verified active
+- Enabled successfully
+- Verified enabled
+- Disabled successfully
+- Verified disabled
