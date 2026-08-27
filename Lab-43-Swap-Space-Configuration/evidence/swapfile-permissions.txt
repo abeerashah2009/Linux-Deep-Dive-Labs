@@ -1,0 +1,1 @@
+-rw------- 1 root root 1073741824 Aug 27 11:15 /swapfile
