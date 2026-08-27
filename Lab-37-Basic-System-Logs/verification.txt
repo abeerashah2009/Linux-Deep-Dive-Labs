@@ -1,0 +1,18 @@
+Lab 37: Basic System Logs
+=========================
+
+System log directory:
+ /var/log
+
+Primary general system log:
+ /var/log/syslog
+
+Commands practiced:
+ - ls -lh /var/log
+ - tail -n 20 /var/log/syslog
+ - grep -i "error" /var/log/syslog
+ - grep -i "warning" /var/log/syslog
+ - tail -f /var/log/syslog
+
+Real-time monitoring:
+ tail -f was used to follow live log updates.
