@@ -1,0 +1,5 @@
+    . /etc/bash_completion
+  fi
+fi
+alias ll='ls -la'
+export MY_VAR="Hello World!"

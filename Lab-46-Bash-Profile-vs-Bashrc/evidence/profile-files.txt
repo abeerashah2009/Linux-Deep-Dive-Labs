@@ -1,0 +1,2 @@
+ls: cannot access '/home/ubuntu/.bash_profile': No such file or directory
+-rw-r--r-- 1 ubuntu ubuntu 3771 Mar 31  2024 /home/ubuntu/.bashrc
