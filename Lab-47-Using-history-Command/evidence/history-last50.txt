@@ -1,0 +1,17 @@
+    1  history | tee evidence/history-after-clear.txt
+    2  cat evidence/history-after-clear.txt
+    3  cd ~/Linux-Deep-Dive-Labs/Lab-47-Using-history-Command
+    4  tree
+    5  git status
+    6  nano README.md
+    7  tree
+    8  git status
+    9  cd ..
+   10  git add Lab-47-Using-history-Command/
+   11  git commit -m "Lab 47 complete: Using history command"
+   12  git status
+   13  git push origin main
+   14  git status
+   15  cd ~/Linux-Deep-Dive-Labs
+   16  history -w Lab-47-Using-history-Command/evidence/history.txt
+   17  history | tail -n 50 > Lab-47-Using-history-Command/evidence/history-last50.txt
