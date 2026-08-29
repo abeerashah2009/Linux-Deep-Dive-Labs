@@ -1,0 +1,26 @@
+===== OPERATOR COMPARISON =====
+
+--- && with successful command ---
+$ true && echo "SECOND COMMAND RUN"
+SECOND COMMAND RUN
+
+--- && with failed command ---
+$ false && echo "SECOND COMMAND WILL NOT RUN"
+(No output from second command confirms it was skipped.)
+
+--- || with failed command ---
+$ false || echo "SECOND COMMAND RUN BECAUSE FIRST FAILED"
+SECOND COMMAND RUN BECAUSE FIRST FAILED
+
+--- || with successful command ---
+$ true || echo "SECOND COMMAND WILL NOT RUN"
+(No output from second command confirms it was skipped.)
+
+--- ; after failed command ---
+$ false; echo "SECOND COMMAND RUNS ANYWAY"
+SECOND COMMAND RUNS ANYWAY
+
+Summary:
+&& -> next command runs only after success.
+|| -> next command runs only after failure.
+;  -> next command runs regardless of previous command status.

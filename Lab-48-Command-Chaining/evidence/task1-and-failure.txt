@@ -1,0 +1,11 @@
+===== TASK 1 STEP 2: && SUCCESS THEN FAILURE =====
+$ echo "Hello, World" && cd non_existent_directory
+Hello, World
+
+$ echo "FIRST COMMAND SUCCESS" && cd non_existent_directory && echo "THIS WILL NOT PRINT"
+FIRST COMMAND SUCCESS
+
+Expected behavior:
+- The first command succeeds.
+- The cd command fails because the directory does not exist.
+- The command after the failed && condition is not executed.

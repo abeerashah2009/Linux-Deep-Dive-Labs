@@ -1,0 +1,8 @@
+===== TASK 1 STEP 1: && TWO SUCCESSFUL COMMANDS =====
+$ rm -rf new_directory
+$ mkdir new_directory && cd new_directory
+
+$ pwd
+/home/ubuntu/Linux-Deep-Dive-Labs/Lab-48-Command-Chaining/new_directory
+
+Both commands completed successfully.

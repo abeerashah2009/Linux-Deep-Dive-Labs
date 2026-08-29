@@ -1,0 +1,10 @@
+===== TASK 3: ; OPERATOR =====
+
+$ echo "This will always print"; cd non_existent_directory; echo "This prints anyway"
+This will always print
+This prints anyway
+
+Expected behavior:
+- The first command executes.
+- The cd command fails because the directory does not exist.
+- The final echo command executes anyway because ; does not depend on the previous command's exit status.

@@ -1,0 +1,38 @@
+===== TASK 5: BACKUP CASE STUDY =====
+
+--- Initial setup ---
+$ cat important_file.txt
+Important backup data
+
+--- Supplied case-study command: first execution ---
+$ mkdir backup || echo "Backup directory already exists" && cp important_file.txt backup/
+
+$ ls -l backup/
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 22 Aug 29 02:40 important_file.txt
+
+$ cat backup/important_file.txt
+Important backup data
+
+--- Supplied case-study command: existing directory ---
+$ mkdir backup || echo "Backup directory already exists" && cp important_file.txt backup/
+mkdir: cannot create directory ‘backup’: File exists
+Backup directory already exists
+
+--- Safer dependency using && ---
+$ mkdir backup && cp important_file.txt backup/
+
+$ ls -l backup/
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 22 Aug 29 02:40 important_file.txt
+
+$ cat backup/important_file.txt
+Important backup data
+
+--- && failure demonstration ---
+$ mkdir backup && cp important_file.txt backup/
+mkdir: cannot create directory ‘backup’: File exists
+
+Result: mkdir failed, therefore cp was skipped.
+
+Case study completed successfully.

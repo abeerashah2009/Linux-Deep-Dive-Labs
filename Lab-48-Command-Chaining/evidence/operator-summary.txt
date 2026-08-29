@@ -1,0 +1,39 @@
+COMMAND CHAINING SUMMARY
+========================
+
+&& (AND)
+- Executes the next command only when the previous command succeeds.
+- Commonly used when later commands depend on successful earlier commands.
+- Example:
+  mkdir directory && cd directory
+
+|| (OR)
+- Executes the next command only when the previous command fails.
+- Commonly used for fallback or error handling.
+- Example:
+  cd missing_directory || echo "Directory does not exist"
+
+; (SEMICOLON)
+- Executes commands sequentially regardless of whether previous commands succeed or fail.
+- Example:
+  command1; command2; command3
+
+TEST RESULTS
+============
+true && echo "RUN"       -> RUN is printed
+false && echo "RUN"      -> RUN is skipped
+false || echo "RUN"      -> RUN is printed
+true || echo "RUN"       -> RUN is skipped
+false; echo "RUN"        -> RUN is printed
+
+CASE STUDY NOTE
+===============
+The expression:
+
+mkdir backup || echo "Backup directory already exists" && cp important_file.txt backup/
+
+uses && and || with equal precedence and left-to-right evaluation.
+
+If the intended requirement is that the copy occurs only when mkdir succeeds, the clearer command is:
+
+mkdir backup && cp important_file.txt backup/

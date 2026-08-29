@@ -1,0 +1,160 @@
+LAB 48 - COMMAND CHAINING
+=========================
+
+Environment:
+Host: Ubuntu Linux
+Lab Directory: Lab-48-Command-Chaining
+
+TASK 1 - && OPERATOR
+====================
+
+Successful chain:
+
+$ rm -rf new_directory
+$ mkdir new_directory && cd new_directory
+$ pwd
+/home/ubuntu/Linux-Deep-Dive-Labs/Lab-48-Command-Chaining/new_directory
+
+Result:
+Both commands succeeded. The cd command executed because mkdir returned success.
+
+Successful command followed by failure:
+
+$ echo "Hello, World" && cd non_existent_directory
+Hello, World
+bash: cd: non_existent_directory: No such file or directory
+
+Multiple && commands:
+
+$ echo "FIRST COMMAND SUCCESS" && cd non_existent_directory && echo "THIS WILL NOT PRINT"
+FIRST COMMAND SUCCESS
+bash: cd: non_existent_directory: No such file or directory
+
+Result:
+The final echo command was skipped because the cd command failed.
+
+TASK 2 - || OPERATOR
+====================
+
+Failed command followed by fallback:
+
+$ cd non_existent_directory || echo "Directory does not exist"
+bash: cd: non_existent_directory: No such file or directory
+Directory does not exist
+
+Successful command with ||:
+
+$ echo "Successful command" || echo "This will NOT print"
+Successful command
+
+Result:
+The fallback command executed only after failure. When the first command succeeded, the || command was skipped.
+
+TASK 3 - ; OPERATOR
+===================
+
+$ echo "This will always print"; cd non_existent_directory; echo "This prints anyway"
+This will always print
+bash: cd: non_existent_directory: No such file or directory
+This prints anyway
+
+Result:
+All commands were attempted sequentially. The final echo executed even though cd failed.
+
+OPERATOR COMPARISON
+===================
+
+$ true && echo "SECOND COMMAND RUN"
+SECOND COMMAND RUN
+
+$ false && echo "SECOND COMMAND WILL NOT RUN"
+
+$ false || echo "SECOND COMMAND RUN BECAUSE FIRST FAILED"
+SECOND COMMAND RUN BECAUSE FIRST FAILED
+
+$ true || echo "SECOND COMMAND WILL NOT RUN"
+
+$ false; echo "SECOND COMMAND RUNS ANYWAY"
+SECOND COMMAND RUNS ANYWAY
+
+Summary:
+&& -> next command runs only after success.
+|| -> next command runs only after failure.
+;  -> next command runs regardless of previous command status.
+
+TASK 4 - EXIT STATUS BEHAVIOR
+=============================
+
+true && echo "RUN"
+Result: RUN is printed.
+
+false && echo "RUN"
+Result: RUN is skipped.
+
+false || echo "RUN"
+Result: RUN is printed.
+
+true || echo "RUN"
+Result: RUN is skipped.
+
+false; echo "RUN"
+Result: RUN is printed.
+
+TASK 5 - BACKUP CASE STUDY
+==========================
+
+Initial file:
+
+$ echo "Important backup data" > important_file.txt
+$ cat important_file.txt
+Important backup data
+
+Supplied case-study command:
+
+$ mkdir backup || echo "Backup directory already exists" && cp important_file.txt backup/
+
+First execution:
+The backup directory was created and the file was copied successfully.
+
+$ ls -l backup/
+important_file.txt
+
+$ cat backup/important_file.txt
+Important backup data
+
+Second execution with existing directory:
+
+$ mkdir backup || echo "Backup directory already exists" && cp important_file.txt backup/
+mkdir: cannot create directory 'backup': File exists
+Backup directory already exists
+
+The copy operation was still evaluated because of the combined && and || behavior.
+
+Safer dependency using &&:
+
+$ mkdir backup && cp important_file.txt backup/
+
+Result:
+The directory was created successfully and the important file was copied.
+
+Failure demonstration:
+
+When backup was made a regular file:
+
+$ mkdir backup && cp important_file.txt backup/
+mkdir: cannot create directory 'backup': File exists
+
+Result:
+mkdir failed, therefore cp was skipped.
+
+FINAL RESULT
+============
+
+Lab 48 Command Chaining completed successfully.
+
+Operators demonstrated:
+1. && - conditional execution after success
+2. || - conditional execution after failure
+3. ;  - sequential execution regardless of status
+
+Evidence files were created for each task and the backup case study.

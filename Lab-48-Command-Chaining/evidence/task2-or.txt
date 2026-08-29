@@ -1,0 +1,11 @@
+===== TASK 2: || OPERATOR =====
+
+$ cd non_existent_directory || echo "Directory does not exist"
+Directory does not exist
+
+$ echo "Successful command" || echo "This will NOT print"
+Successful command
+
+Expected behavior:
+- When the first command fails, || executes the second command.
+- When the first command succeeds, || skips the second command.
