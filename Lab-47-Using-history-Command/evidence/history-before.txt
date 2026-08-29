@@ -1,0 +1,16 @@
+    1  clear
+    2  cd ~
+    3  ls
+    4  pwd
+    5  git clone https://github.com/abeerashah2009/Linux-Deep-Dive-Labs
+    6  cd ~/Linux-Deep-Dive-Labs
+    7  mkdir Lab-47-Using-history-Command
+    8  cd Lab-47-Using-history-Command
+    9  mkdir evidence
+   10  pwd
+   11  tree
+   12  ls
+   13  sudo apt install tree
+   14  tree
+   15  clear
+   16  history | tee evidence/history-before.txt

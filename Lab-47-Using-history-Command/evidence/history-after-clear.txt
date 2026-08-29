@@ -1,0 +1,1 @@
+    1  history | tee evidence/history-after-clear.txt
