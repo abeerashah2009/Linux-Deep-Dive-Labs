@@ -1,0 +1,17 @@
+Lab 50: Introduction to Shell Variables
+
+1. Checked Bash version 5.2.21.
+2. Created a local variable MYVAR.
+3. Displayed the variable using echo.
+4. Tested local variable visibility in a child shell.
+5. Created an exported variable MYVAR2.
+6. Accessed the exported variable in a child shell.
+7. Compared local and exported variables.
+8. Tested exit status using $?.
+9. Checked process IDs using $$.
+10. Tested argument count using $#.
+11. Created a Bash script named args.sh.
+12. Executed the script with four arguments.
+
+Final Result:
+Successfully completed all practical tasks in Lab 50.

@@ -1,0 +1,43 @@
+Lab 50: Introduction to Shell Variables
+Terminal Evidence
+Ubuntu 24.04
+
+Bash Version:
+GNU bash, version 5.2.21(1)-release
+
+1. Local Variable
+MYVAR="HelloWorld"
+Output: HelloWorld
+
+Child Shell Output:
+[]
+
+2. Exported Variable
+export MYVAR2="GlobalHello"
+Output: [GlobalHello]
+
+Variable Comparison:
+[]
+[GlobalHello]
+
+3. Exit Status
+true; echo $?
+Output: 0
+
+false; echo $?
+Output: 1
+
+4. Process IDs
+Current Shell: 2991
+Child Shell: 6014
+
+5. Argument Count
+Zero arguments: 0
+Three arguments: 3
+
+6. Arguments Script
+./args.sh one two three four
+Output: Arguments: 4
+
+Final Status:
+All practical tasks completed successfully.
