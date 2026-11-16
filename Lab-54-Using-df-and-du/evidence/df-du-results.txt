@@ -1,0 +1,163 @@
+Lab 54: Using df and du
+Environment: Ubuntu 24.04
+User: ubuntu
+Host: ip-172-31-10-122
+
+========================================
+TASK 1: CHECKING DISK SPACE WITH DF
+========================================
+
+Command: whoami
+Output:
+ubuntu
+
+Command: pwd
+Output:
+/home/ubuntu/Linux-Deep-Dive-Labs/Lab-54-Using-df-and-du
+
+Command: df -h
+Output:
+Filesystem       Size  Used Avail Use% Mounted on
+tmpfs            384M  1.4M  382M   1% /run
+efivarfs         128K  4.1K  119K   4% /sys/firmware/efi/efivars
+/dev/nvme0n1p1    29G  8.3G   20G  30% /
+tmpfs            1.9G  8.0K  1.9G   1% /dev/shm
+tmpfs            5.0M     0  5.0M   0% /run/lock
+/dev/nvme0n1p16  881M  342M  478M  42% /boot
+/dev/nvme0n1p15  105M  6.2M   99M   6% /boot/efi
+tmpfs            384M  128K  384M   1% /run/user/1000
+
+Command: df -hT -x tmpfs -x squashfs -x devtmpfs
+Output:
+Filesystem      Type      Size  Used Avail Use% Mounted on
+efivarfs        efivarfs  128K  4.1K  119K   4% /sys/firmware/efi/efivars
+/dev/nvme0n1p1  ext4       29G  8.3G   20G  30% /
+/dev/nvme0n1p16 ext4      881M  342M  478M  42% /boot
+/dev/nvme0n1p15 vfat      105M  6.2M   99M   6% /boot/efi
+
+Command: df -i /
+Output:
+Filesystem      Inodes  IUsed   IFree IUse% Mounted on
+/dev/nvme0n1p1 3801088 296005 3505083    8% /
+
+Command: df -hT /
+Output:
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/nvme0n1p1 ext4   29G  8.3G   20G  30% /
+
+Task 1 Observations:
+- Root filesystem: /dev/nvme0n1p1
+- Filesystem type: ext4
+- Total size: 29 GB
+- Used space: 8.3 GB
+- Available space: 20 GB
+- Disk usage: 30%
+- Inode usage: 8%
+- Disk and inode capacity were sufficient.
+
+========================================
+TASK 2: CHECKING DIRECTORY USAGE WITH DU
+========================================
+
+Created sample directories:
+~/lab/Documents/reports/2024
+~/lab/Documents/media
+~/lab/Documents/notes
+
+Created sample files:
+- media/video.bin: 50 MB
+- media/photo.bin: 10 MB
+- reports/2024/annual.bin: 20 MB
+- reports/summary.bin: 5 MB sparse file
+- notes/todo.txt: 14 bytes
+
+Command: ls -lR ~/lab/Documents
+Output:
+/home/ubuntu/lab/Documents:
+total 12
+drwxrwxr-x 2 ubuntu ubuntu 4096 Nov 16 12:08 media
+drwxrwxr-x 2 ubuntu ubuntu 4096 Nov 16 12:09 notes
+drwxrwxr-x 3 ubuntu ubuntu 4096 Nov 16 12:09 reports
+
+/home/ubuntu/lab/Documents/media:
+total 61440
+-rw-rw-r-- 1 ubuntu ubuntu 10485760 Nov 16 12:08 photo.bin
+-rw-rw-r-- 1 ubuntu ubuntu 52428800 Nov 16 12:08 video.bin
+
+/home/ubuntu/lab/Documents/notes:
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 14 Nov 16 12:09 todo.txt
+
+/home/ubuntu/lab/Documents/reports:
+total 4
+drwxrwxr-x 2 ubuntu ubuntu    4096 Nov 16 12:09 2024
+-rw-rw-r-- 1 ubuntu ubuntu 5242880 Nov 16 12:09 summary.bin
+
+/home/ubuntu/lab/Documents/reports/2024:
+total 20480
+-rw-rw-r-- 1 ubuntu ubuntu 20971520 Nov 16 12:09 annual.bin
+
+Command: du -sh ~/lab/Documents
+Output:
+81M     /home/ubuntu/lab/Documents
+
+Command: ls -lh ~/lab/Documents/reports/summary.bin
+Output:
+-rw-rw-r-- 1 ubuntu ubuntu 5.0M Nov 16 12:09 /home/ubuntu/lab/Documents/reports/summary.bin
+
+Command: du -h ~/lab/Documents/reports/summary.bin
+Output:
+0       /home/ubuntu/lab/Documents/reports/summary.bin
+
+Command: du -h --max-depth=1 ~/lab/Documents
+Output:
+61M     /home/ubuntu/lab/Documents/media
+8.0K    /home/ubuntu/lab/Documents/notes
+21M     /home/ubuntu/lab/Documents/reports
+81M     /home/ubuntu/lab/Documents
+
+Command: du -ah ~/lab/Documents | sort -rh | head -n 10
+Output:
+81M     /home/ubuntu/lab/Documents
+61M     /home/ubuntu/lab/Documents/media
+50M     /home/ubuntu/lab/Documents/media/video.bin
+21M     /home/ubuntu/lab/Documents/reports/2024
+21M     /home/ubuntu/lab/Documents/reports
+20M     /home/ubuntu/lab/Documents/reports/2024/annual.bin
+10M     /home/ubuntu/lab/Documents/media/photo.bin
+8.0K    /home/ubuntu/lab/Documents/notes
+4.0K    /home/ubuntu/lab/Documents/notes/todo.txt
+0       /home/ubuntu/lab/Documents/reports/summary.bin
+
+Command: du -ah ~/lab/Documents | sort -rh | head -n 3
+Output:
+81M     /home/ubuntu/lab/Documents
+61M     /home/ubuntu/lab/Documents/media
+50M     /home/ubuntu/lab/Documents/media/video.bin
+
+========================================
+TASK 3: CLEANUP
+========================================
+
+Command:
+rm -rf ~/lab/Documents
+
+Verification command:
+ls ~/lab
+
+Output:
+(no output; directory is empty)
+
+Cleanup completed successfully.
+
+========================================
+LAB CONCLUSION
+========================================
+
+In this lab, I practised checking filesystem capacity with df,
+checking directory and file disk usage with du, identifying
+large files, understanding inode usage, comparing sparse
+file logical size with allocated disk space, and cleaning up
+temporary test data.
+
+Lab 54 practical tasks completed.
