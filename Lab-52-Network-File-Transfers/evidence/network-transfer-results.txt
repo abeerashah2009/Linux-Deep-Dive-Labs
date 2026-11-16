@@ -1,0 +1,50 @@
+Lab 52: Network File Transfers (wget/curl)
+Environment: Ubuntu 24.04
+Date: 16 November 2026
+
+TASK 1: Download a file using wget
+Command:
+wget 'http://localhost:8000/sample-file.txt'
+
+Result:
+HTTP 200 OK
+Downloaded file: sample-file.txt
+File size: 26 bytes
+Content: Hello from the lab server
+
+TASK 2: Download a webpage using curl
+Command:
+curl --noproxy '*' -s 'http://localhost:8000/index.html' -o webpage.html
+
+Result:
+HTTP 200 OK
+Downloaded file: webpage.html
+File size: 111 bytes
+Compared with original using diff -u.
+Result: No differences.
+
+TASK 3: Resume a partial download
+Command:
+timeout -s INT 2 wget --no-proxy --limit-rate=1m 'http://localhost:8000/big.bin'
+
+Partial download size:
+2,294,731 bytes
+
+Resume command:
+wget --no-proxy -c 'http://localhost:8000/big.bin'
+
+Final download size:
+52,428,800 bytes (50 MB)
+
+SHA-256 verification:
+Downloaded file:
+af3ac02df2cf0efb36c43c4ecb558e7180ac912cba3fad013c2a553821ca3aba
+
+Original server file:
+af3ac02df2cf0efb36c43c4ecb558e7180ac912cba3fad013c2a553821ca3aba
+
+Result:
+Both SHA-256 hashes match.
+
+CONCLUSION:
+All three practical tasks were successfully tested.
