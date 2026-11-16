@@ -15,3 +15,16 @@ Avahi Service Testing:
 - Verified enabled
 - Disabled successfully
 - Verified disabled
+
+Systemd PID 1: systemd
+Running Services: Verified with systemctl
+Demo Service: labdemo.service (temporary test service)
+Service Start: active
+Service Stop: inactive
+Enable at Boot: enabled
+Active After Enable: inactive
+Disable at Boot: disabled
+Cleanup: Service file removed and daemon-reload completed
+Final labdemo State: inactive
+
+Practical Result: Successfully completed systemd service management tasks.

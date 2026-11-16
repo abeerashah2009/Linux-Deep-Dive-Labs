@@ -1,0 +1,37 @@
+Lab 38: Systemd Services Overview
+Practical Evidence: labdemo Service
+
+1. Verify systemd PID 1
+Command: ps -p 1 -o comm=
+Result: systemd
+
+2. List running services
+Command: systemctl list-units --type=service --state=running --no-pager | head
+Result: Running services listed successfully.
+
+3. Start labdemo
+Command: sudo systemctl start labdemo
+Result: active (running)
+
+4. Stop labdemo
+Command: sudo systemctl stop labdemo
+Result: inactive
+
+5. Enable labdemo at boot
+Command: sudo systemctl enable labdemo
+Result: enabled
+
+6. Verify runtime state after enabling
+Command: systemctl is-active labdemo
+Result: inactive
+
+7. Disable labdemo at boot
+Command: sudo systemctl disable labdemo
+Result: disabled
+
+8. Clean up
+Removed /etc/systemd/system/labdemo.service
+Reloaded systemd with daemon-reload.
+Final labdemo state: inactive
+
+Overall Result: Practical tasks completed successfully.

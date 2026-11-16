@@ -639,3 +639,141 @@ These skills form an essential foundation for **Linux system administration, Dev
 **Lab 38 — Systemd Services Overview**
 **Status:** ✅ Completed
 **Focus:** Linux • systemd • systemctl • Service Management • Troubleshooting • DevOps
+
+---
+
+# 8. Hands-on Practical: Managing a Demo Service
+
+For this practical, I created a safe custom systemd service named `labdemo`.
+
+## Task 1: Verify systemd
+
+Command:
+
+```bash
+ps -p 1 -o comm=
+```
+
+Output:
+
+```text
+systemd
+```
+
+Listed running services:
+
+```bash
+systemctl list-units --type=service --state=running --no-pager | head
+```
+
+Verified running services and their LOAD, ACTIVE and SUB states.
+
+## Task 2: Create the Demo Service
+
+Created the service file:
+
+`/etc/systemd/system/labdemo.service`
+
+Configuration:
+
+```ini
+[Unit]
+Description=Lab demo service
+
+[Service]
+ExecStart=/usr/bin/sleep infinity
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Reloaded systemd:
+
+```bash
+sudo systemctl daemon-reload
+```
+
+## Task 3: Start the Service
+
+```bash
+sudo systemctl start labdemo
+systemctl is-active labdemo
+systemctl status labdemo --no-pager
+```
+
+Result: `active (running)`
+
+## Task 4: Stop the Service
+
+```bash
+sudo systemctl stop labdemo
+systemctl is-active labdemo
+```
+
+Result: `inactive`
+
+## Task 5: Enable at Boot
+
+```bash
+sudo systemctl enable labdemo
+systemctl is-enabled labdemo
+systemctl is-active labdemo
+```
+
+Results:
+- Boot configuration: `enabled`
+- Current service state: `inactive`
+
+## Task 6: Disable at Boot
+
+```bash
+sudo systemctl disable labdemo
+systemctl is-enabled labdemo
+```
+
+Result: `disabled`
+
+## Task 7: Clean Up
+
+```bash
+sudo systemctl stop labdemo
+sudo rm /etc/systemd/system/labdemo.service
+sudo systemctl daemon-reload
+systemctl is-active labdemo
+```
+
+Final result: `inactive`
+
+Confirmed that the service file was removed successfully.
+
+## 9. Practical Results
+
+| Operation | Actual Result |
+|---|---|
+| Verify systemd PID 1 | systemd |
+| List running services | Successful |
+| Create labdemo | Successful |
+| Start service | active |
+| Stop service | inactive |
+| Enable service | enabled |
+| Disable service | disabled |
+| Remove demo service | Successful |
+| Final service state | inactive |
+
+## 10. Important Learning Notes
+
+- `systemctl start` starts a service immediately.
+- `systemctl stop` stops a running service.
+- `systemctl enable` configures automatic startup at boot.
+- `systemctl disable` removes automatic startup configuration.
+- `systemctl is-active` checks the current service state.
+- `systemctl is-enabled` checks boot-time configuration.
+- `systemctl daemon-reload` reloads systemd unit files.
+
+## 11. Conclusion
+
+I successfully completed the systemd service management practical using a custom demo service.
+
+I practised listing, creating, starting, stopping, enabling and disabling services. I also removed the demo service and verified the final state.
+
+This practical improved my understanding of Linux service management using systemctl.
