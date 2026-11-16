@@ -1,0 +1,116 @@
+# Lab 57 — Simple Log Rotation
+## Practical Evidence
+
+### 1. Installation Verification
+Command:
+`logrotate --version | head -1`
+
+Result:
+`logrotate 3.21.0`
+
+Logrotate was already installed on Ubuntu 24.04.
+
+### 2. Global Configuration Inspection
+File inspected: `/etc/logrotate.conf`
+
+Observed settings:
+- weekly — rotate logs weekly
+- rotate 4 — retain four old rotations
+- su root adm — use root user and adm group
+- create — create new empty log files
+- compress — commented out globally
+- include /etc/logrotate.d — load additional configurations
+
+The system configuration was not modified.
+
+### 3. Rsyslog Configuration Inspection
+File inspected: `/etc/logrotate.d/rsyslog`
+
+Observed directives:
+- rotate 4
+- weekly
+- missingok
+- notifempty
+- compress
+- delaycompress
+- sharedscripts
+- postrotate script
+
+The system rsyslog configuration was not modified.
+
+### 4. Custom Test Configuration
+Created a private test log:
+`/var/log/lab/app.log`
+
+Initial sample size: 1,000 lines.
+
+Created custom configuration:
+`~/lab/app.logrotate`
+
+Configuration settings:
+- su root root
+- daily
+- rotate 2
+- missingok
+- notifempty
+- compress
+- delaycompress
+- create 640 root root
+
+Configuration security:
+- Owner: root
+- Group: root
+- Permissions: 644
+
+### 5. Dry Run Verification
+Command:
+`sudo logrotate -d -f -s ~/lab/state ~/lab/app.logrotate`
+
+Result:
+- Handling 1 logs
+- Log needs rotating
+- Forced from command line
+- New log creation planned with mode 0640
+- No configuration ownership or permission errors
+
+Debug mode made no changes to the log files.
+
+### 6. First Actual Rotation
+Command:
+`sudo logrotate -f -s ~/lab/state ~/lab/app.logrotate`
+
+Observed:
+- app.log — new empty log
+- app.log.1 — previous 1,000-line log
+
+### 7. Second Actual Rotation
+Added 500 new lines and performed another forced rotation.
+
+Observed files:
+- app.log — new empty log
+- app.log.1 — previous 500-line log
+- app.log.2.gz — compressed original log
+
+### 8. Compression Verification
+Command:
+`sudo zcat /var/log/lab/app.log.2.gz | tail -2`
+
+Verified output:
+```text
+999
+1000
+```
+
+This confirmed that the original log data was preserved after compression.
+
+### 9. Cleanup Verification
+Removed the temporary test directories:
+- `/var/log/lab`
+- `/home/ubuntu/lab`
+
+Both paths were verified as no longer existing.
+
+### Conclusion
+Successfully inspected Logrotate configuration, created a private test configuration, modified retention settings, performed a dry run, executed two real log rotations, verified delayed compression, and cleaned up temporary files.
+
+All practical operations were performed using a separate test log. System log configurations were left unchanged.
