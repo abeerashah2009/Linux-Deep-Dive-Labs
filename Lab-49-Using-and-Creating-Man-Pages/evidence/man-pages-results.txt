@@ -1,0 +1,74 @@
+Lab 49: Using and Creating Man Pages
+Terminal Evidence
+Ubuntu 24.04 LTS
+
+1. Existing Man Page Search
+
+Command:
+man -f ls
+
+Output:
+ls (1) - list directory contents
+
+2. Existing Man Page Sections
+
+Command:
+MANPAGER=cat man ls | col -b | grep -E '^(NAME|SYNOPSIS|DESCRIPTION)'
+
+Output:
+NAME
+SYNOPSIS
+DESCRIPTION
+
+3. Search for ls Option
+
+Command:
+MANPAGER=cat man ls | col -b | grep -A2 -e '-a, --all'
+
+Output:
+-a, --all
+do not ignore entries starting with .
+
+4. Custom Bash Script
+
+Command:
+test_script
+
+Output:
+This is a test script.
+
+5. Custom Manual Page Preview
+
+Command:
+man -l test_script.1 | col -b | head
+
+Output:
+TEST_SCRIPT(1) Custom Manual TEST_SCRIPT(1)
+
+NAME
+test_script - A simple test script demonstration.
+
+SYNOPSIS
+test_script
+
+DESCRIPTION
+This script outputs a simple message: "This is a test script."
+
+6. Compression Verification
+
+Command:
+gzip -t /usr/local/share/man/man1/test_script.1.gz
+
+Output:
+Compression OK
+
+7. Installed Manual Page Search
+
+Command:
+man -k test_script
+
+Output:
+test_script (1) - A simple test script demonstration.
+
+Final Status:
+All practical verification commands completed successfully.

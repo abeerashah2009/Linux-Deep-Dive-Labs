@@ -1,0 +1,20 @@
+Lab 49: Using and Creating Man Pages
+
+1. Installed and verified man-db and groff-base.
+2. Updated the manual-page database using mandb.
+3. Located the existing ls manual page using man -f.
+4. Explored NAME, SYNOPSIS, and DESCRIPTION sections.
+5. Searched for the -a, --all option in the ls manual.
+6. Created a Bash script named test_script.sh.
+7. Installed and executed the custom script successfully.
+8. Created a custom manual page named test_script.1.
+9. Previewed the custom manual page.
+10. Compressed the manual page using gzip.
+11. Installed it in /usr/local/share/man/man1/.
+12. Updated the manual database using mandb.
+13. Verified compression using gzip -t.
+14. Successfully viewed the custom page using man test_script.
+15. Found the custom manual page using man -k test_script.
+
+Final Result:
+Successfully completed the practical tasks for using, creating, installing, and viewing Linux manual pages.
