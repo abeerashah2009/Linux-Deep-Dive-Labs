@@ -1,0 +1,110 @@
+LAB 58: SETTING UP ALIASES IN .bashrc
+=====================================
+
+ENVIRONMENT
+-----------
+Operating System: Ubuntu 24.04 LTS
+User: ubuntu
+VM: ip-172-31-10-186
+Repository: Linux-Deep-Dive-Labs
+
+TASK 1: TEMPORARY ALIAS
+----------------------
+Command: alias ll='ls -alF'
+Verification: type ll
+Actual result: ll is aliased to ls -alF
+Status: PASSED
+
+TASK 2: INSPECT .bashrc
+----------------------
+Commands:
+ls -a | grep bashrc
+grep -n alias ~/.bashrc
+
+Findings:
+- .bashrc exists.
+- Existing aliases include ll, la, l, ls, grep, fgrep, egrep and alert.
+- .bashrc loads ~/.bash_aliases if it exists.
+Status: PASSED
+
+TASK 3: ADD PERMANENT ALIASES
+-----------------------------
+Duplicate-prevention guard:
+grep -q "# lab58 aliases" ~/.bashrc
+
+Aliases added:
+alias ll='ls -alF'
+alias myip='hostname -I'
+alias aptup='sudo apt update'
+
+Actual .bashrc lines:
+119: # lab58 aliases
+120: alias ll='ls -alF'
+121: alias myip='hostname -I'
+122: alias aptup='sudo apt update'
+
+Status: PASSED
+
+TASK 4: RELOAD AND VERIFY
+-------------------------
+Command: source ~/.bashrc
+Verification: type ll myip aptup
+
+Actual results:
+ll is aliased to ls -alF
+myip is aliased to hostname -I
+aptup is aliased to sudo apt update
+
+Status: PASSED
+
+TASK 5: TEST ALIAS COMMANDS
+---------------------------
+Command: ll ~ | head -n 3
+Result: Detailed directory listing displayed successfully.
+
+Command: myip
+Actual output:
+172.31.10.186 172.17.0.1
+
+The aptup alias was defined and verified but was not intentionally executed.
+
+Status: PASSED
+
+TASK 6: FRESH INTERACTIVE SHELL
+-------------------------------
+Command: bash -ic 'type ll'
+Actual result:
+ll is aliased to ls -alF
+Status: PASSED
+
+TASK 7: FRESH LOGIN SHELL
+-------------------------
+Command: bash -lic 'type myip'
+Actual result:
+myip is aliased to hostname -I
+Status: PASSED
+
+TASK 8: NON-INTERACTIVE SHELL
+-----------------------------
+Command: bash -c 'type ll'
+Actual result:
+bash: line 1: type: ll: not found
+
+Explanation:
+Non-interactive Bash does not normally load .bashrc.
+Aliases are therefore not automatically available.
+Status: PASSED - EXPECTED BEHAVIOUR
+
+FINAL CONCLUSION
+----------------
+- Created and verified a temporary alias.
+- Inspected the existing .bashrc configuration.
+- Added three permanent aliases.
+- Used a duplicate-prevention guard.
+- Reloaded .bashrc.
+- Verified all three aliases.
+- Tested alias commands.
+- Confirmed persistence in fresh interactive and login shells.
+- Compared interactive and non-interactive shell behaviour.
+
+All practical checks performed for Lab 58 passed.
