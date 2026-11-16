@@ -1,0 +1,134 @@
+# Lab 55: Secure File Deletion Using shred
+
+## Environment
+- Operating System: Ubuntu 24.04 LTS
+- Utility: GNU shred
+- Version: coreutils 9.4
+
+## Task 1: Create Test Files
+
+Command:
+```bash
+mkdir -p ~/shred-lab
+cd ~/shred-lab
+echo "This is a sensitive file that needs secure deletion." > sample.txt
+cp sample.txt orig.txt
+cat sample.txt
+```
+
+Output:
+```text
+This is a sensitive file that needs secure deletion.
+```
+
+Original file inspection:
+```bash
+xxd sample.txt | head
+```
+
+The hex output displayed the original readable text.
+
+## Task 2: Overwrite the Test File
+
+Command:
+```bash
+shred -v -n 3 -z sample.txt
+```
+
+Output:
+```text
+shred: sample.txt: pass 1/4 (random)...
+shred: sample.txt: pass 2/4 (random)...
+shred: sample.txt: pass 3/4 (random)...
+shred: sample.txt: pass 4/4 (000000)...
+```
+
+Explanation:
+- `-v`: Displays progress.
+- `-n 3`: Performs three random overwrite passes.
+- `-z`: Performs a final pass of zeros.
+- The file remains present because `-u` was not used.
+
+## Task 3: Verify the Overwritten File
+
+Command:
+```bash
+xxd sample.txt | head
+```
+
+Result: The displayed bytes were all zeros.
+
+Comparison:
+```bash
+cmp sample.txt orig.txt || echo differs
+```
+
+Output:
+```text
+sample.txt orig.txt differ: byte 1, line 1
+differs
+```
+
+Keyword check:
+```bash
+grep -c sensitive sample.txt
+```
+
+Output:
+```text
+0
+```
+
+This confirms that the original keyword was not found in the overwritten file.
+
+## Task 4: Remove the Test Files
+
+Commands:
+```bash
+rm sample.txt
+shred -v -u orig.txt
+```
+
+The `shred` output showed three random overwrite passes, followed by renaming and removal of `orig.txt`.
+
+Verification:
+```bash
+test ! -e sample.txt && echo "sample.txt removed"
+test ! -e orig.txt && echo "orig.txt removed"
+ls -la
+```
+
+Output:
+```text
+sample.txt removed
+orig.txt removed
+total 8
+drwxrwxr-x  2 ubuntu ubuntu 4096 Nov 16 12:32 .
+drwxr-x--- 21 ubuntu ubuntu 4096 Nov 16 12:29 ..
+```
+
+## Task 5: Clean Up
+
+Commands:
+```bash
+cd ~
+rmdir ~/shred-lab
+echo "cleaned"
+ls -ld ~/shred-lab
+```
+
+Output:
+```text
+cleaned
+ls: cannot access '/home/ubuntu/shred-lab': No such file or directory
+```
+
+The scratch directory was successfully removed.
+
+## Conclusion
+
+The practical demonstrated how GNU `shred` overwrites file contents before deletion. The overwritten file was inspected, compared with its original copy, and checked for the original keyword.
+
+**Important limitation:** `shred` cannot guarantee secure erasure on every storage type. Copy-on-write filesystems, SSD wear levelling, snapshots, and backups may retain other copies of data. Full-disk encryption and appropriate device-level secure-erase methods may be more suitable in those cases.
+
+**Lab Status:** Practical tasks completed and verified.
