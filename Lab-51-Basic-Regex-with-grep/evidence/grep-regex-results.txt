@@ -1,0 +1,50 @@
+Lab 51: Basic Regex with grep
+Terminal Evidence
+Ubuntu Linux
+GNU grep 3.11
+
+TASK 1: Lines Starting with a
+Command: grep '^a' example.txt
+Output:
+apple
+apricot
+
+Count:
+2
+
+TASK 2: Lines Ending with y
+Command: grep 'y$' example.txt
+Output:
+cherry
+
+Count:
+1
+
+Line Number:
+3:cherry
+
+TASK 3: Optional Character Matching
+
+Extended Regex:
+grep -E 'colou?r' colourExample.txt
+
+Output:
+color
+colour
+
+Count:
+2
+
+Basic Regex:
+grep 'colou\?r' colourExample.txt
+
+Output:
+color
+colour
+
+Note:
+An awk warning appeared after the Basic Regex command.
+Both expected matching lines were displayed.
+
+FINAL STATUS:
+All three practical tasks completed successfully.

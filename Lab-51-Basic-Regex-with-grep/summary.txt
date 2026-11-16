@@ -1,0 +1,19 @@
+Lab 51: Basic Regex with grep
+
+1. Checked GNU grep version 3.11.
+2. Created example.txt using printf.
+3. Searched for lines starting with a using ^.
+4. Counted matching lines using grep -c.
+5. Searched for lines ending with y using $.
+6. Verified matching line numbers using grep -n.
+7. Created colourExample.txt.
+8. Used Extended Regex with grep -E.
+9. Compared Basic Regex with Extended Regex.
+10. Tested optional character matching using \?.
+
+Final Results:
+Task 1: Passed
+Task 2: Passed
+Task 3: Passed
+
+All three practical tasks were completed and verified.
