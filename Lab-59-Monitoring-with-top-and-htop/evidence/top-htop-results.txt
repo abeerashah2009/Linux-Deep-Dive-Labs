@@ -1,0 +1,165 @@
+Lab 59: Monitoring with top and htop
+Terminal Evidence
+Operating System: Ubuntu 24.04 LTS
+Instance: ip-172-31-10-173
+
+==================================================
+TASK 1: INSTALLATION OF HTOP
+==================================================
+
+Command:
+sudo apt update
+
+Result:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+
+Command:
+sudo apt install -y htop
+
+Result:
+htop is already the newest version (3.3.0-4build1).
+
+Verification:
+command -v htop && htop --version
+
+Actual Output:
+/usr/bin/htop
+htop 3.3.0
+
+==================================================
+TASK 2: RUNNING TOP AND HTOP
+==================================================
+
+CPU Test Process:
+yes > /dev/null &
+
+CPU_PID=12863
+
+Memory Test Process:
+python3 -c 'b = bytearray(300*1024*1024); import time; time.sleep(600)' &
+
+MEM_PID=13384
+
+PID Verification:
+CPU_PID=12863 MEM_PID=13384
+
+TOP Command:
+top -b -n1 | head -15
+
+Observed Results:
+Total tasks: 237
+Running tasks: 5
+Total memory: 3832.2 MiB
+Available memory: 2100.4 MiB
+CPU usage by yes: 69.2%
+
+HTOP:
+htop
+
+Observation:
+htop opened successfully and displayed CPU bars,
+memory and swap bars, and the process list.
+
+PS CPU Check:
+ps aux --sort=-%cpu | head -5
+
+Observed:
+yes process PID 12863 appeared with 95.6% CPU usage.
+
+==================================================
+TASK 3: COMPARE TOP AND HTOP
+==================================================
+
+Command:
+top -b -n1 | head -5
+
+Command:
+free -m
+
+Actual Memory Results:
+
+TOP:
+Total: 3832.2 MiB
+Used: 1704.9 MiB
+Free: 963.0 MiB
+Buff/cache: 1421.5 MiB
+Available: 2127.4 MiB
+
+FREE -M:
+Total: 3832 MB
+Used: 1705 MB
+Free: 962 MB
+Buff/cache: 1421 MB
+Available: 2126 MB
+
+Observation:
+Both commands showed consistent memory information.
+
+==================================================
+TASK 4: SORTING PROCESSES
+==================================================
+
+4.1 SORT BY CPU
+
+Command:
+top -b -n1 -o %CPU | head -15
+
+Command:
+top -b -n1 -o %CPU | sed -n '7,10p'
+
+Observed:
+yes process PID 12863 appeared at the top.
+CPU usage reached 100% in one snapshot.
+
+PS CPU SORT:
+ps aux --sort=-%cpu | head
+
+4.2 SORT BY MEMORY
+
+Command:
+top -b -n1 -o %MEM | head -15
+
+Command:
+ps aux --sort=-%mem | head
+
+Observed:
+Python process PID 13384 appeared near the top.
+
+Python memory usage:
+Approximately 317 MB RSS.
+Approximately 8.0% to 8.1% RAM.
+
+==================================================
+TASK 5: STOP TEST PROCESSES
+==================================================
+
+Command:
+kill "$CPU_PID" "$MEM_PID"
+
+Both processes were terminated successfully.
+
+Verification:
+sleep 1
+ps -p "$CPU_PID","$MEM_PID"
+
+Actual Output:
+    PID TTY          TIME CMD
+
+Observation:
+Only the header remained. Both test processes
+were successfully stopped.
+
+==================================================
+FINAL CONCLUSION
+==================================================
+
+The practical tasks of Lab 59 were completed.
+
+I installed and verified htop, monitored system
+resources with top and htop, compared memory
+summaries, sorted processes by CPU and memory
+usage, and terminated the test processes.
+
+All test processes were verified as stopped.
